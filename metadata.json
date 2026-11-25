@@ -1,0 +1,8 @@
+{
+  "name": "Pati Kalbi",
+  "description": "Gerze Belediyesi ve GEFOK iş birliğiyle hazırlanan, 3D/WebAR destekli ve veteriner onaylı sanal hayvan barınağı. Satın alma, sahiplen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

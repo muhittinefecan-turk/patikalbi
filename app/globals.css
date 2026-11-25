@@ -1,0 +1,131 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Native MPA View Transitions API */
+@view-transition {
+  navigation: auto;
+}
+
+:root {
+  --bg-sis: oklch(0.955 0.006 205);
+  --surface-beyaz: oklch(1 0 0);
+  --ink-karadeniz: oklch(0.285 0.044 220);
+  --ink-muted: color-mix(in oklch, var(--ink-karadeniz) 68%, var(--bg-sis));
+  --border-hairline: color-mix(in oklch, var(--ink-karadeniz) 13%, transparent);
+  --accent-kalp: oklch(0.505 0.195 16);
+  --accent-kalp-hover: oklch(0.45 0.195 16);
+  --status-yosun: oklch(0.525 0.088 171);
+  --status-kehribar: oklch(0.795 0.155 82);
+  --glass-bg: color-mix(in oklch, var(--surface-beyaz) 76%, transparent);
+  --glass-border: color-mix(in oklch, var(--ink-karadeniz) 12%, transparent);
+}
+
+.dark {
+  --bg-sis: oklch(0.18 0.028 220);
+  --surface-beyaz: oklch(0.235 0.036 220);
+  --ink-karadeniz: oklch(0.96 0.008 205);
+  --ink-muted: color-mix(in oklch, var(--ink-karadeniz) 72%, var(--bg-sis));
+  --border-hairline: color-mix(in oklch, var(--ink-karadeniz) 16%, transparent);
+  --accent-kalp: oklch(0.60 0.21 16);
+  --accent-kalp-hover: oklch(0.54 0.21 16);
+  --status-yosun: oklch(0.635 0.105 170);
+  --status-kehribar: oklch(0.825 0.155 82);
+  --glass-bg: color-mix(in oklch, var(--surface-beyaz) 72%, transparent);
+  --glass-border: color-mix(in oklch, var(--ink-karadeniz) 16%, transparent);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-sis);
+    color: var(--ink-karadeniz);
+    font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-sis);
+    color: var(--ink-karadeniz);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-body), sans-serif;
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  /* WCAG 2.1 AA visible focus ring: 2px Kalp with 2px offset */
+  :focus-visible {
+    outline: 2px solid var(--accent-kalp);
+    outline-offset: 2px;
+  }
+}
+
+/* Liquid Glass 2.0 (never applied directly over WebGL canvases) */
+.liquid-glass {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 color-mix(in oklch, white 35%, transparent);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Container query wrapper for animal tiles */
+.tile-container {
+  container-type: inline-size;
+}
+
+/* Native dialog backdrop */
+dialog.pati-dialog::backdrop {
+  background: color-mix(in oklch, #07141a 60%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+/* CSS Scroll-Driven reveal where supported */
+@supports (animation-timeline: view()) {
+  @keyframes patiScrollReveal {
+    from {
+      opacity: 0.72;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .scroll-reveal {
+    animation: patiScrollReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 24%;
+  }
+}
+
+/* Horizontal scrollbar subtle styling for Face Wall */
+.face-wall-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hairline) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  @view-transition {
+    navigation: none;
+  }
+}

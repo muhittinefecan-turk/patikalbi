@@ -1,0 +1,13 @@
+name = "pati-kalbi"
+compatibility_date = "2026-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pati-kalbi-db"
+database_id = "REPLACE_WITH_YOUR_CLOUDFLARE_D1_DATABASE_ID"
+migrations_dir = "d1"
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "pati-kalbi-media"
